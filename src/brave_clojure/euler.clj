@@ -99,6 +99,10 @@
 ;;                (conj factors a b)
 ;;                factors)))))
 
+;; 1x13195
+;; 5x2639
+;; axb
+;; a>b
 (defn factors
   [number]
   (reduce (fn [factors n]
@@ -107,8 +111,7 @@
                     b (/ number a)]
                 (if (and (integer? a)
                          (integer? b))
-                  (do
-                    (conj factors a b))
+                  (conj factors a b)
                   factors))
               (reduced factors)))
           [1 number]
@@ -124,24 +127,33 @@
 ;; => 45
 
 (reduce (fn [sub n]
-          (println n)
           (if (< (reduce + sub) 100)
             (conj sub n)
             (reduced sub)))
         []
         (range 20))
-;; => :big
-
-(into #{} (factors 102))
-;; => #{1 102 6 51 34 17 3 2}
+;; => [0 1 2 3 4 5 6 7 8 9 10 11 12 13 14]
 
 (into #{} (factors 13195))
 ;; => #{65 377 7 13195 1 91 13 29 2639 35 145 5 1885 455 203 1015}
 
-(take 10 (factors 13195))
-;; => (1 5 7 13 29 35 65 91 145 203)
-
 (into #{} (factors 600851475143))
+;; => #{1
+;;      6857
+;;      486847
+;;      1234169
+;;      600851475143
+;;      5753023
+;;      716151937
+;;      10086647
+;;      104441
+;;      87625999
+;;      8462696833
+;;      839
+;;      408464633
+;;      1471
+;;      59569
+;;      71}
 
 (range 2 13)
 ;; => (2 3 4 5 6 7 8 9 10 11 12)
