@@ -130,11 +130,11 @@
                         (loop [b a
                                coll coll]
                           (conj coll (* a b))
-                          (if (< b 2)
+                          (if (< b 100)
                             coll
                             (recur (dec b) (conj coll (* a b))))))
                       []
-                      (range 999 1 -1)))
+                      (range 999 99 -1)))
 
 (apply max (reduce (fn [coll n]
                      (if (palindrome? n)
