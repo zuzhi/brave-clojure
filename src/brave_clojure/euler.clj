@@ -143,3 +143,36 @@
                    []
                    products))
 ;; => 906609
+
+
+;; Smallest multiple
+;; Problem 5
+;;
+;; 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+;;
+;; What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+(defn numbers
+  ([] (numbers 20))
+  ([n] (cons n (lazy-seq (numbers (+ n 20))))))
+
+(take 10 (numbers))
+
+(range 2 21)
+
+(defn sn?
+  [n]
+  (every? true?
+          (reduce (fn [coll a]
+                    (conj coll (integer? (/ n a))))
+                  []
+                  (range 2 21))))
+
+(sn? 2520)
+
+(reduce (fn [a b]
+          (if (sn? b)
+            (reduced b)
+            nil))
+        (numbers))
+;; => 232792560
